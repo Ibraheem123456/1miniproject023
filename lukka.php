@@ -16,41 +16,42 @@ Header("Location:logout.php");
     <title>Index Page</title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/5.0.0-alpha1/css/bootstrap.min.css" integrity="sha384-r4NyP46KrjDleawBgD5tp8Y7UzmLA05oM1iAEQ17CSuDqnUK2+k9luXQOfXJCJ4I" crossorigin="anonymous">
 </head>
-<body>
+<body style="background:#293242;">
 <div class="container">
  <?php include("menu.php");?>
     <table id="mytable" class="table table-bordered table-striped"> 
-        <h2 >ข้อมูลสินค้า</h2>
+        <h2 style="color: white;" >ข้อมูลลูกค้า</h2>
 <div class="mb-3">   
 
-<thead>    
-</thead>
+<thead>   
 <tr>
-<th>รหัสสินค้า</th>
-<th>ชื่อสินค้า</th>
-<th>ราคาสินค้า</th>
-<th>จำนวนสินค้า</th>
-<th>Action</th>
+<th style="color: white;">ลำดับ</th>
+<th style="color: white;">ชื่อ</th>
+<th style="color: white;">นามสกุล</th>
+<th style="color: white;">ที่อยู่</th>
+<th style="color: white;">รายวิชา</th>
+<th style="color: white;">Action</th>
 </tr>
 <div class="container">  
-    <a href="ins_form1.php" class="btn btn-success">เพิ่มข้อมูลสินค้า</a>
+    <a href="ins_form.php" class="btn btn-success">เพิ่มข้อมูลลูกค้า</a>
 <div class="mb-3">   
 </thead>
 <tbody>
 <?php
 include('connection.php');
-$sql = "SELECT * FROM tbl_product";
+$sql = "SELECT * FROM tbl_customers";
 $result = $conn->query($sql);
 if ($result->num_rows > 0) {
 //แสดงข้อมูลเป็นตาราง
 while($row = $result->fetch_assoc()) {
 echo '<tr>';
-echo '<td>'. $row['P_Id'] . '</td>';
-echo '<td>'. $row['P_Name'] . '</td>';
-echo '<td>'. $row['P_Price'] . '</td>';
-echo '<td>'. $row['P_Number'] . '</td>';
-echo '<td><a role="button"  href="update1.php?P_Id='.$row['P_Id'].'" class="btn btn-primary">Update</a> ';  //ปุ่มที่เพิ่มเข้ามา
-echo '<a href="delete1.php?P_Id='.$row['P_Id'].'" class="btn btn-danger">delete</a>';  //ปุ่มที่เพิ่มเข้ามา
+echo '<td style="color: white;">'. $row['c_no'] . '</td>';
+echo '<td style="color: white;">'. $row['S_Name'] . '</td>';
+echo '<td style="color: white;">'. $row['S_LastName'] . '</td>';
+echo '<td style="color: white;">'. $row['S_Address'] . '</td>';
+echo '<td style="color: white;">'. $row['S_SunjectName'] . '</td>';
+echo '<td style="color: white;"><a role="button"  href="update.php?c_no='.$row['c_no'].'" class="btn btn-primary">Update</a> ';  //ปุ่มที่เพิ่มเข้ามา
+echo '<a href="delete.php?c_no='.$row['c_no'].'" class="btn btn-danger">delete</a></td>';  //ปุ่มที่เพิ่มเข้ามา
 echo '</tr>';
 }
 } else {
